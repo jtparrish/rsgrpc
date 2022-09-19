@@ -1,0 +1,33 @@
+// version of protocol buffer used
+syntax = "proto3";
+
+// package name for the buffer will be used later
+package file_service;
+
+// service which can be executed
+service FileManager {
+// function which can be called
+  rpc MakeFile (FileName) returns (Success);
+  rpc PutFileContents (PutFileMsg) returns (Success);
+  rpc GetFileContents (FileName) returns (FileContentResponse);
+}
+
+// argument
+message FileName {
+// data type and position of data
+  string name = 1;
+}
+
+message PutFileMsg {
+    string name = 1;
+    string contents = 2;
+}
+
+message FileContentResponse {
+    bool success = 1;
+    string contents = 2;
+}
+
+message Success {
+    bool success = 1;
+}
